@@ -1,12 +1,13 @@
 #!/bin/bash
 # Formatting drives and setting up swap
-mkfs.fat -F32 /dev/nvme0n1p1
-mkswap /dev/nvme0n1p2
-swapon /dev/nvme0n1p2
-mkfs.ext4 /dev/nvme0n1p3
+mkfs.fat -F32 /dev/sda1
+mkfs.ext4 /dev/sda2
 
 # Mounting root partition
-mount /dev/nvme0n1p3 /mnt
+mount /dev/sda2 /mnt
+
+# Setting up pacman.conf
+nano /etc/pacman.conf
 
 # Updating pacman
 pacman -Syy
@@ -15,9 +16,6 @@ pacman -Syy
 pacman -S reflector
 reflector -f 12 -l 12 -n 12 > /etc/pacman.d/mirrorlist
 
-# Setting up pacman.conf
-nano /etc/pacman.conf
-
 # Downloading base for install
 pacstrap /mnt base base-devel linux linux-firmware nano reflector
 
@@ -25,8 +23,7 @@ pacstrap /mnt base base-devel linux linux-firmware nano reflector
 genfstab -U /mnt >> /mnt/etc/fstab
 
 # Moving configuration files to new system
-mv part2 /mnt
-mv moddas /mnt
+mv install /mnt
 
 # Chroot into new system
 arch-chroot /mnt
