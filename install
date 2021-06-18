@@ -27,10 +27,11 @@ pacman-key --populate archlinux
 passwd
 
 # XFCE4 with standard applications
-pacman -S grub efibootmgr xorg xorg-server lightdm lightdm-gtk-greeter xfce4 xfce4-goodies networkmanager network-manager-applet xdg-user-dirs sudo gnome-disk-utility
+#pacman -S grub efibootmgr xorg xorg-server lightdm lightdm-gtk-greeter xfce4 xfce4-goodies networkmanager network-manager-applet xdg-user-dirs sudo gnome-disk-utility
+pacman -S networkmanager
 
 # Installing applications
-pacman -S firefox gparted vlc qbittorrent htop neofetch arch-install-scripts fish
+#pacman -S firefox gparted vlc qbittorrent htop neofetch arch-install-scripts fish
 
 # Preparing boot partition and installing grub
 mkdir /boot/efi
@@ -39,7 +40,7 @@ grub-install --target=x86_64-efi --bootloader-id=Arch --efi-directory=/boot/efi
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Enabling Services and adding accounts
-systemctl enable lightdm.service
+#systemctl enable lightdm.service
 systemctl enable NetworkManager
 useradd -m modda
 passwd modda
