@@ -28,7 +28,7 @@ passwd
 
 # XFCE4 with standard applications
 #pacman -S grub efibootmgr xorg xorg-server lightdm lightdm-gtk-greeter xfce4 xfce4-goodies networkmanager network-manager-applet xdg-user-dirs sudo gnome-disk-utility
-pacman -S networkmanager
+pacman -S networkmanager grub efibootmgr xorg xorg-server lightdm lightdm-gtk-greeter sudo deepin
 
 # Installing applications
 #pacman -S firefox gparted vlc qbittorrent htop neofetch arch-install-scripts fish
@@ -40,9 +40,9 @@ grub-install --target=x86_64-efi --bootloader-id=Arch --efi-directory=/boot/efi
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Enabling Services and adding accounts
-#systemctl enable lightdm.service
+systemctl enable lightdm.service
 systemctl enable NetworkManager
 useradd -m modda
 passwd modda
-xdg-user-dirs-update
+#xdg-user-dirs-update
 EDITOR=nano visudo
