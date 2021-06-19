@@ -13,7 +13,7 @@ nano /etc/pacman.conf
 pacman -Syy
 
 # Installing and running reflector
-pacman -S reflector
+pacman -S --noconfirm reflector
 reflector -f 12 -l 12 -n 12 > /etc/pacman.d/mirrorlist
 
 # Downloading base for install
