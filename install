@@ -27,10 +27,10 @@ pacman-key --populate archlinux
 passwd
 
 # XFCE4 with standard applications
-pacman -S grub efibootmgr xorg xorg-server lightdm pantheon lightdm-pantheon-greeter sound-theme-elementary switchboard lightdm-gtk-greeter elementary-icon-theme elementary-wallpapers pantheon-applications-menu wingpanel-indicator-session wingpanel-indicator-datetime
+pacman -S --noconfirm grub efibootmgr xorg xorg-server lightdm pantheon lightdm-pantheon-greeter sound-theme-elementary switchboard lightdm-gtk-greeter elementary-icon-theme elementary-wallpapers pantheon-applications-menu wingpanel-indicator-session wingpanel-indicator-datetime
 
 # Installing applications
-pacman -S firefox gparted vlc qbittorrent htop neofetch arch-install-scripts fish xdg-user-dirs
+pacman -S --noconfirm firefox gparted vlc qbittorrent htop neofetch arch-install-scripts fish xdg-user-dirs
 
 # Preparing boot partition and installing grub
 mkdir /boot/efi
