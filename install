@@ -27,8 +27,7 @@ pacman-key --populate archlinux
 passwd
 
 # XFCE4 with standard applications
-#pacman -S grub efibootmgr xorg xorg-server lightdm lightdm-gtk-greeter xfce4 xfce4-goodies networkmanager network-manager-applet xdg-user-dirs sudo gnome-disk-utility
-pacman -S networkmanager grub efibootmgr xorg xorg-server lightdm lightdm-gtk-greeter sudo deepin deepin-extra
+pacman -S grub efibootmgr xorg xorg-server lightdm pantheon lightdm-pantheon-greeter sound-theme-elementary switchboard lightdm-gtk-greeter elementary-icon-theme elementary-wallpapers pantheon-applications-menu wingpanel-indicator-session wingpanel-indicator-datetime
 
 # Installing applications
 #pacman -S firefox gparted vlc qbittorrent htop neofetch arch-install-scripts fish
