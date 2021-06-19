@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Setting up home directory folders
+
+# Installing git and yay
+sudo pacman -S git
+cd /opt
+sudo git clone https://aur.archlinux.org/yay-git.git
+sudo chown -R modda:modda ./yay-git
+cd yay-git
+makepkg -si
+
+# Updating yay and downloading packages
+yay -Syy
+curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | gpg --import -
+yay -S pantheon-session-git gnome-settings-daemon-elementary pantheon-default-settings switchboard-plug-elementary-tweaks urutau-icons-git pantheon-dock-git
+chsh -s /usr/bin/fish
+sudo chsh -s /usr/bin/fish
