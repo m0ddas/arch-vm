@@ -24,11 +24,11 @@ echo "FONT=ter-124n" | tee -a /etc/vconsole.conf >/dev/null
 
 # Setting up Hostname and Network
 touch /etc/hostname
-echo "arch-desktop" | tee -a /etc/hostname >/dev/null
+echo "arch-test" | tee -a /etc/hostname >/dev/null
 
 echo "127.0.0.1  localhost" | tee -a /etc/hosts >/dev/null
 echo "::  localhost" | tee -a /etc/hosts >/dev/null
-echo "127.0.1.1  arch-desktop" | tee -a /etc/hosts >/dev/null
+echo "127.0.1.1  arch-test" | tee -a /etc/hosts >/dev/null
 
 # Configuring /etc/pacman.conf
 sed -i 's/^#Color/Color/' /etc/pacman.conf
@@ -36,11 +36,8 @@ sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 10/' /etc/pacman.conf
 nano /etc/pacman.conf
 
 # Installing and Configuring Boot Manager
-pacman -S --noconfirm efibootmgr
-
-bootctl --path=/boot install
-
-touch /boot/loader/entries/arch.conf
+touch /home/modda/loader.conf
+touch /home/modda/arch.conf
 echo "title Arch Linux" | tee -a /home/modda/arch.conf >/dev/null
 echo "linux vmlinuz-linux" | tee -a /home/modda/arch.conf >/dev/null
 echo "initrd initramfs-linux.img" | tee -a /home/modda/arch.conf >/dev/null
@@ -48,26 +45,3 @@ echo "options" | tee -a /home/modda/arch.conf >/dev/null
 echo "options root=$(blkid | grep '/dev/vda2' | cut -d' ' -f5 | sed 's/"//g') rw splash lsm=landlock,lockdown,yama,integrity,apparmor,bpf" | tee -a /home/modda/arch.conf >/dev/null
 
 echo "default arch" > /home/modda/loader.conf >/dev/null
-
-# Adding users and setting passwords
-passwd
-useradd -m -G wheel modda
-passwd modda
-
-# Desktop Environment
-#pacman -S --noconfirm gdm gnome gnome-terminal networkmanager firefox
-
-# Applications
-#pacman -S --noconfirm steam lutris wine wine-mono wine-gecko spotify-launcher fish fuse vlc flatpak snapd
-
-# Office
-#pacman -S --noconfirm libreoffice-fresh-sv
-
-# AMD GPU Drivers
-#pacman -S --noconfirm mesa lib32-mesa libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau vulkan-radeon lib32-vulkan-radeon 
-
-# All in one
-#pacman -S --noconfirm gdm gnome gnome-terminal networkmanager firefox steam lutris wine wine-mono wine-gecko spotify-launcher fish fuse vlc flatpak snapd libreoffice-fresh-sv mesa lib32-mesa libva-mesa-driver lib32-libva-mesa-driver mesa-vdpau lib32-mesa-vdpau vulkan-radeon lib32-vulkan-radeon terminus-font
-
-systemctl enable NetworkManager
-systemctl enable gdm
