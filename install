@@ -38,10 +38,8 @@ nano /etc/pacman.conf
 # Installing and Configuring Boot Manager
 touch /home/modda/loader.conf
 touch /home/modda/arch.conf
+echo "default arch" | tee -a /home/modda/loader.conf >/dev/null
 echo "title Arch Linux" | tee -a /home/modda/arch.conf >/dev/null
 echo "linux vmlinuz-linux" | tee -a /home/modda/arch.conf >/dev/null
 echo "initrd initramfs-linux.img" | tee -a /home/modda/arch.conf >/dev/null
-echo "options" | tee -a /home/modda/arch.conf >/dev/null
 echo "options root=$(blkid | grep '/dev/vda2' | cut -d' ' -f5 | sed 's/"//g') rw splash lsm=landlock,lockdown,yama,integrity,apparmor,bpf" | tee -a /home/modda/arch.conf >/dev/null
-
-echo "default arch" > /home/modda/loader.conf >/dev/null
