@@ -1,0 +1,39 @@
+#!/bin/bash
+
+parted -s /dev/vda mklabel gpt
+mkpart primary fat32 1MiB 2GiB
+set 1 esp on
+mkpart primary linux-swap 2GiB 20GiB
+mkpart primary 20GiB 70GiB
+mkpart primary 70GiB 100%
+
+# Creating filesystems
+mkfs.vfat -F32 /dev/vda1
+mkswap /dev/vda2
+swapon /dev/vda2
+mkfs.ext4 -F /dev/vda3
+#mkfs.ext4 -F /dev/vda4
+
+# Mounting partitions and creating folders
+mount /dev/vda3 /mnt
+mkdir /mnt/boot
+mkdir /mnt/boot/efi
+mkdir /mnt/home
+mount /dev/vda1 /mnt/boot/efi
+mount /dev/vda4 /mnt/home
+
+# Edit pacman configuration
+sed -i 's/^#Color/Color/' /etc/pacman.conf
+sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 10/' /etc/pacman.conf
+
+# Updating pacman
+pacman -Sy
+
+# Installing Arch Base
+pacstrap -K /mnt base base-devel linux linux-firmware nano
+
+# Generating fstab file on new environment
+genfstab -U /mnt >> /mnt/etc/fstab
+
+# Chroot into new environment
+arch-chroot /mnt
