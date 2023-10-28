@@ -16,9 +16,8 @@ mkfs.ext4 -F /dev/vda3
 # Mounting partitions and creating folders
 mount /dev/vda3 /mnt
 mkdir /mnt/boot
-mkdir /mnt/boot/efi
 mkdir /mnt/home
-mount /dev/vda1 /mnt/boot/efi
+mount /dev/vda1 /mnt/boot
 mount /dev/vda4 /mnt/home
 
 # Edit pacman configuration
