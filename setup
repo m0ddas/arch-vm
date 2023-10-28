@@ -2,9 +2,9 @@
 
 parted -s /dev/vda mklabel gpt
 parted /dev/vda mkpart primary fat32 1MiB 2GiB set 1 esp on
-parted /dev/vda mkpart primary linux-swap 2GiB 20GiB
-parted /dev/vda mkpart primary 20GiB 70GiB
-parted /dev/vda mkpart primary 70GiB 100%
+parted /dev/vda mkpart primary linux-swap 2GiB 8GiB
+parted /dev/vda mkpart primary 8GiB 30GiB
+parted /dev/vda mkpart primary 40GiB 100%
 
 # Creating filesystems
 mkfs.vfat -F32 /dev/vda1
