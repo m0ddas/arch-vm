@@ -38,6 +38,8 @@ nano /etc/pacman.conf
 pacman -Sy
 pacman -S efibootmgr
 
+bootctl --path=/boot/efi install
+
 # Installing and Configuring Boot Manager
 touch /boot/loader/loader.conf
 touch /boot/loader/entries/arch.conf
