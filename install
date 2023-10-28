@@ -35,11 +35,14 @@ sed -i 's/^#Color/Color/' /etc/pacman.conf
 sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 10/' /etc/pacman.conf
 nano /etc/pacman.conf
 
+pacman -Sy
+pacman -S efibootmgr
+
 # Installing and Configuring Boot Manager
-touch /home/modda/loader.conf
-touch /home/modda/arch.conf
-echo "default arch" | tee -a /home/modda/loader.conf >/dev/null
-echo "title Arch Linux" | tee -a /home/modda/arch.conf >/dev/null
-echo "linux vmlinuz-linux" | tee -a /home/modda/arch.conf >/dev/null
-echo "initrd initramfs-linux.img" | tee -a /home/modda/arch.conf >/dev/null
-echo "options root=$(blkid | grep '/dev/vda2' | cut -d' ' -f5 | sed 's/"//g') rw splash lsm=landlock,lockdown,yama,integrity,apparmor,bpf" | tee -a /home/modda/arch.conf >/dev/null
+touch /boot/loader/loader.conf
+touch /boot/loader/entries/arch.conf
+echo "default arch" | tee -a /boot/loader/loader.conf >/dev/null
+echo "title Arch Linux" | tee -a /boot/loader/entries/arch.conf >/dev/null
+echo "linux vmlinuz-linux" | tee -a /boot/loader/entries/arch.conf >/dev/null
+echo "initrd initramfs-linux.img" | tee -a /boot/loader/entries/arch.conf >/dev/null
+echo "options root=$(blkid | grep '/dev/vda2' | cut -d' ' -f5 | sed 's/"//g') rw splash lsm=landlock,lockdown,yama,integrity,apparmor,bpf" | tee -a /boot/loader/entries/arch.conf >/dev/null
