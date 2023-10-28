@@ -47,4 +47,4 @@ echo "default arch" | tee -a /boot/loader/loader.conf >/dev/null
 echo "title Arch Linux" | tee -a /boot/loader/entries/arch.conf >/dev/null
 echo "linux vmlinuz-linux" | tee -a /boot/loader/entries/arch.conf >/dev/null
 echo "initrd initramfs-linux.img" | tee -a /boot/loader/entries/arch.conf >/dev/null
-echo "options root=$(blkid | grep '/dev/vda2' | cut -d' ' -f5 | sed 's/"//g') rw splash lsm=landlock,lockdown,yama,integrity,apparmor,bpf" | tee -a /boot/loader/entries/arch.conf >/dev/null
+echo "options root=$(blkid | grep '/dev/vda3' | cut -d' ' -f5 | sed 's/"//g') rw splash lsm=landlock,lockdown,yama,integrity,apparmor,bpf" | tee -a /boot/loader/entries/arch.conf >/dev/null
